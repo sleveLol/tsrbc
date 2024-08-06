@@ -8,226 +8,212 @@
     <!-- Quill.js CSS -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="icon" rel="stylesheet">
     <style>
-        /* Global Styles */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #F0EAD6;
-            /* Slightly Yellow White Text */
-            background-color: #066839;
-            /* Primary Background Color */
-            overflow: hidden;
-        }
+       /* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #F0EAD6; /* Slightly Yellow White Text */
+    background-color: #066839; /* Primary Background Color */
+    overflow: hidden;
+}
 
-        .container {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
 
-        /* Sidebar Styles */
-        .sidebar {
-            width: 15%;
-            background-color: #0A5C36;
-            /* Sidebar Background Color */
-            padding: 20px;
-            box-sizing: border-box;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            /* Full height */
-            overflow: hidden;
-            /* Prevent overflow */
-        }
+/* Sidebar Styles */
+.sidebar {
+    width: 15%;
+    background-color: #0A5C36; /* Sidebar Background Color */
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height */
+    overflow: hidden; /* Prevent overflow */
+}
 
-        .logo {
-            width: 99%;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-            position: sticky;
-            /* Keeps the logo fixed at the top */
-            top: 0;
-            z-index: 10;
-            background-color: #0A5C36;
-            /* Match sidebar background */
-        }
+.logo {
+    width: 99%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    position: sticky; /* Keeps the logo fixed at the top */
+    top: 0;
+    z-index: 10;
+    background-color: #0A5C36; /* Match sidebar background */
+}
 
-        .logo img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+.logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
-        .sidebar h2 {
-            font-size: 1.5em;
-            margin: 0 0 10px 0;
-            text-align: center;
-            border-bottom: 2px solid #F0EAD6;
-            /* Highlight Color */
-            padding-bottom: 10px;
-        }
+.sidebar h2 {
+    font-size: 1.5em;
+    margin: 0 0 10px 0;
+    text-align: center;
+    border-bottom: 2px solid #F0EAD6; /* Highlight Color */
+    padding-bottom: 10px;
+}
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex-grow: 1;
-            /* Allows TOC to grow and fill space */
-            overflow-y: auto;
-            /* Enable scrolling for TOC */
-            max-height: calc(100vh - 190px);
-            /* Ensure space for logo and copyright */
-        }
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Allows TOC to grow and fill space */
+    overflow-y: auto; /* Enable scrolling for TOC */
+    max-height: calc(100vh - 190px); /* Ensure space for logo and copyright */
+    position: relative;
+}
 
-        .sidebar li {
-            margin-bottom: 5px;
-        }
+.sidebar li {
+    margin-bottom: 5px;
+    position: relative; /* Needed for the line positioning */
+    padding-left: 15px; /* Space for the line */
+}
 
-        .sidebar a {
-            color: #F0EAD6;
-            /* Slightly Yellow White Text */
-            text-decoration: none;
-            padding: 6px;
-            display: block;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
+.sidebar li::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #18392B; /* Line color */
+    height: 100%;
+}
 
-        .sidebar a:hover {
-            background-color: #18392B;
-            /* Hover color for Sidebar Links */
-        }
+.sidebar a {
+    color: #F0EAD6; /* Slightly Yellow White Text */
+    text-decoration: none;
+    padding: 6px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    position: relative;
+}
 
-        /* Copyright Notice */
-        .copyright {
-            font-size: 0.8em;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #F0EAD6;
-            cursor: pointer;
-            margin-top: auto;
-            /* Ensures it stays at the bottom */
-            background-color: #0A5C36;
-            /* Match sidebar background */
-            position: sticky;
-            bottom: 0;
-            /* Keeps it fixed at the bottom */
-            z-index: 10;
-        }
+.sidebar a:hover {
+    background-color: #18392B; /* Hover color for Sidebar Links */
+}
 
-        /* Content Styles */
-        .content {
-            width: 85%;
-            overflow-y: auto;
-            padding: 20px;
-            box-sizing: border-box;
-            background-color: #0F5132;
-            /* Content Background Color */
-        }
+/* Copyright Notice */
+.copyright {
+    font-size: 0.8em;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #F0EAD6;
+    cursor: pointer;
+    margin-top: auto; /* Ensures it stays at the bottom */
+    background-color: #0A5C36; /* Match sidebar background */
+    position: sticky;
+    bottom: 0; /* Keeps it fixed at the bottom */
+    z-index: 10;
+}
 
-        .content section {
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #066839;
-            /* Section Background Color */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: box-shadow 0.3s ease-in-out;
-        }
+/* Content Styles */
+.content {
+    width: 85%;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #0F5132; /* Content Background Color */
+}
 
-        .content h1,
-        .content h2 {
-            margin: 0;
-            padding: 10px 0;
-            border-bottom: 2px solid #F0EAD6;
-            /* Highlight Color for Borders */
-        }
+.content section {
+    margin-bottom: 15px;
+    padding: 20px;
+    background-color: #066839; /* Section Background Color */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
 
-        .content h3 {
-            margin: 0;
-            padding: 10px 0;
-            border-bottom: 2px solid #F0EAD6;
-            /* Highlight Color for Borders */
-        }
+.content h1, .content h2 {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #F0EAD6; /* Highlight Color for Borders */
+}
 
-        .content p {
-            margin: 10px 0;
-        }
+.content h3 {
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #F0EAD6; /* Highlight Color for Borders */
+}
 
-        .subsection {
-            background-color: #14452F;
-            /* Heading 2 Background Color */
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-left: 20px;
-            transition: box-shadow 0.3s ease-in-out;
-            /* Transition for glow effect */
-        }
+.content p {
+    margin: 10px 0;
+}
 
-        .subsubsection {
-            background-color: #18392B;
-            /* Heading 3 Background Color */
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-left: 40px;
-            transition: box-shadow 0.3s ease-in-out;
-            /* Transition for glow effect */
-        }
+.subsection {
+    background-color: #14452F; /* Heading 2 Background Color */
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+    transition: box-shadow 0.3s ease-in-out; /* Transition for glow effect */
+}
 
-        .glow {
-            box-shadow: 0 0 15px 5px #F0EAD6 !important;
-            /* Glow effect for clicked sections */
-        }
+.subsubsection {
+    background-color: #18392B; /* Heading 3 Background Color */
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 40px;
+    transition: box-shadow 0.3s ease-in-out; /* Transition for glow effect */
+}
 
-        /* Custom Scrollbar Styles for Sidebar and TOC */
-        .sidebar ul::-webkit-scrollbar {
-            width: 8px;
-            /* Width of the scrollbar */
-        }
+.glow {
+    box-shadow: 0 0 15px 5px #F0EAD6 !important; /* Glow effect for clicked sections */
+}
 
-        .sidebar ul::-webkit-scrollbar-thumb {
-            background-color: #18392B;
-            /* Dark green color */
-            border-radius: 10px;
-            /* Rounded corners */
-        }
+/* Custom Scrollbar Styles for Sidebar and TOC */
+.sidebar ul::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
 
-        .sidebar ul::-webkit-scrollbar-thumb:hover {
-            background-color: #1A4733;
-            /* Lighter shade on hover */
-        }
+.sidebar ul::-webkit-scrollbar-thumb {
+    background-color: #18392B; /* Dark green color */
+    border-radius: 10px; /* Rounded corners */
+}
 
-        .sidebar ul::-webkit-scrollbar-track {
-            background-color: #0A5C36;
-            /* Sidebar background color */
-            border-radius: 10px;
-        }
+.sidebar ul::-webkit-scrollbar-thumb:hover {
+    background-color: #1A4733; /* Lighter shade on hover */
+}
 
-        /* Main Content Scrollbar */
-        .content::-webkit-scrollbar {
-            width: 8px;
-        }
+.sidebar ul::-webkit-scrollbar-track {
+    background-color: #0A5C36; /* Sidebar background color */
+    border-radius: 10px;
+}
 
-        .content::-webkit-scrollbar-thumb {
-            background-color: #18392B;
-            border-radius: 10px;
-        }
+/* Main Content Scrollbar */
+.content::-webkit-scrollbar {
+    width: 8px;
+}
 
-        .content::-webkit-scrollbar-thumb:hover {
-            background-color: #1A4733;
-        }
+.content::-webkit-scrollbar-thumb {
+    background-color: #18392B;
+    border-radius: 10px;
+}
 
-        .content::-webkit-scrollbar-track {
-            background-color: #0F5132;
-            border-radius: 10px;
-        }
+.content::-webkit-scrollbar-thumb:hover {
+    background-color: #1A4733;
+}
+
+.content::-webkit-scrollbar-track {
+    background-color: #0F5132;
+    border-radius: 10px;
+}
+
+
     </style>
 </head>
 
