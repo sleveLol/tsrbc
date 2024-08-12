@@ -129,7 +129,7 @@ body {
 .content section {
     margin-bottom: 15px;
     padding: 20px;
-    background-color: #066839; /* Section Background Color */
+    background-color: #087c44; /* Section Background Color */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
@@ -152,7 +152,7 @@ body {
 }
 
 .subsection {
-    background-color: #14452F; /* Heading 2 Background Color */
+    background-color: #19573b; /* Heading 2 Background Color */
     padding: 15px;
     border-radius: 10px;
     margin-top: 10px;
@@ -212,8 +212,32 @@ body {
     background-color: #0F5132;
     border-radius: 10px;
 }
+/* Notification Bar Styles */
+.notification-bar {
+    background-color: #B22222; /* Red background color */
+    color: #F0EAD6; /* Slightly Yellow White Text */
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 15px auto;
+    max-width: 100%;
+    display: none; /* Initially hidden */
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Red glow effect */
+    transition: opacity 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
 
+.notification-bar.show {
+    display: block;
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 1); /* More intense glow when shown */
+}
 
+.notification-bar.active {
+    display: block; /* Show when active */
+}
     </style>
 </head>
 
@@ -234,6 +258,11 @@ body {
             </div>
         </aside>
         <main class="content" id="content">
+            <div id="notificationBar" class="notification-bar">
+               test
+            </div>
+         
+            
             <section id="section1">
                 <h1>SECTION 1: TSRB Championship Mission Statement</h1>
                 <p>The goal of the community and the purpose of this document is to establish a friendly environment
@@ -304,10 +333,20 @@ body {
                     <h2>3.5 Practice</h2>
                     <p>Free practice sessions are available 24 hours a day throughout the week. They will have the same
                         weather and conditions as qualifying and the race. Drivers are encouraged to practice the track
-                        and make adjustments to their setup. While there isn’t a lap requirement to join the races, we
-                        recommend a minimum of 40 laps or the ability to drive double the race length without spinning
-                        or crashing. While there is no stewarding for practice sessions, please be courteous to other
-                        drivers.</p>
+                        and make adjustments to their setup. 
+
+<div class="subsubsection" id="section3-5-1">
+                        <h3>3.5.1 Required Laps</h3>
+                        <p>To ensure all drivers are procicient enoguh at a particular track, there is a minimum amount of laps
+they must complete through the week. We have divided them into three categoies.
+<li>Sub 1 Minute Lap: 60 laps</li>
+<li>1 Minute+ Lap: 40 laps</li>
+<li>~2 Minute Lap: 20 laps</li>
+<br>
+These are rough appriximations of how the requirements will be calculated. All laps must be completed at least 1 hour before the race at 7PM BST/GMT. Failure to complete your required laps by this time will
+mean you are unable to take part in the races.
+</p>
+                    </div>
                 </div>
                 <div class="subsection" id="section3-6">
                     <h2>3.6 Wet Weather</h2>
@@ -740,6 +779,25 @@ body {
             const adminPanel = document.getElementById('adminPanel');
             adminPanel.style.display = show ? 'block' : 'none';
         }
+        document.addEventListener('DOMContentLoaded', function () {
+    const notificationBar = document.getElementById('notificationBar');
+
+    function showNotification(message) {
+        if (message && message.trim() !== "") {
+            notificationBar.textContent = message;
+            notificationBar.classList.add('active');
+        } else {
+            notificationBar.classList.remove('active');
+        }
+    }
+
+    // Example usage: Enable the notification with a message
+    showNotification('Welcome to the all new TSRBC Handbook. Please read through it, there are a lot of changes! In future, new additions/removals from the rules will be announced in this red box, alongside the changelog appendix at the bottom.');
+
+    // Example usage: Disable the notification by passing an empty string
+    // showNotification('');
+});
+
     </script>
 </body>
 
