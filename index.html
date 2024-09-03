@@ -339,8 +339,8 @@ body {
                         <h3>3.5.1 Required Laps</h3>
                         <p>To ensure all drivers are proficient enough at a particular track, there is a minimum amount of laps
 they must complete through the week. We have divided them into three categories.
-<li>Sub 1 Minute Lap: 60 laps</li>
-<li>1 Minute+ Lap: 40 laps</li>
+<li><1 minute lap: 60 laps</li>
+<li>>1 Minute Lap: 40 laps</li>
 <li>~2 Minute Lap: 20 laps</li>
 <br>
 These are rough approximations of how the requirements will be calculated. All laps must be completed at least 1 hour before the race at 7PM BST/GMT. Failure to complete your required laps by this time will
@@ -353,7 +353,11 @@ mean you are unable to take part in the races.
                     <p>From now on there is a possibility that every session will include rain. This requires every user 
                         to be on the latest preview version of Custom Shaders Patch. During rainy sessions, it is up to the 
                         driver to decide whether or not to switch to wet tyres. However, not switching and as a result,
-                    driving dangerously will be seen as negligence and subject to penalisation.</p>
+                    driving dangerously will be seen as negligence and subject to penalisation.
+                <br><br>
+            Weather types will be forecasted in race announcements. For example:<br>
+            &#9925; &#127783; &#x2600 <br>
+        This means there's a possibility for direct sun, broken clouds with sun, and rain. However, none of these weather types are guaranteed. The transition time between weather types is 600 seconds, so it's up to your own judgement to tell if rain is coming.</p>
                 </div>
             </section>
 
@@ -522,6 +526,7 @@ mean you are unable to take part in the races.
                         80kph speed limit.</p>
                     <p>Once the green light is shown, and the race starts, you must not overtake until you pass the
                         start/finish line.</p>
+                        <p> <b>Note: At all times during the pace lap, you must remain in the grid formation.</b></p>
                 </div>
                 <div class="subsection" id="section6-2">
                     <h2>6.2 Full Course Yellow</h2>
@@ -595,9 +600,7 @@ mean you are unable to take part in the races.
                         <h3>7.2.1 Penalty Point Structure</h3>
                         <p>Penalty Points will be applied to a driver’s license for mild-to-severe infractions, at the
                             Steward’s discretion. PPs can be applied for repeat offenses, or if the warranted penalty simply
-                            isn’t enough. Once a driver accrues 3 penalty points, they will receive a race ban. Multiple
-                            penalty point infractions acquired in the same race or consecutive races will result in an
-                            additional penalty point being applied. Penalty points will be calculated on a 6 race rolling
+                            isn’t enough. Once a driver accrues 3 penalty points, they will receive a race ban. Penalty points will be calculated on a 6 race rolling
                             basis. After the 6 races have been completed, the PP will be removed.</p>
                     </div>
             
@@ -685,7 +688,21 @@ mean you are unable to take part in the races.
             <section id="appendixA">
                 <h1>APPENDIX A: Changelog</h1>
                 <!-- Add changelog content here if needed -->
-            </section>
+                <div class="subsection" id="sectionA-1">
+                    <h2>03/09/24</h2>
+                    <p>-Drivers will now no longer recieve an extra penalty point if they recieve multiple penalty points during a race. (7.2.1)
+
+                        <br>
+                        <br>-Penalty system reworked, can now be found on the budgets spreadsheet.
+
+                        <br><br>
+                        -Made lap requirements more concise. (3.5.1)
+                        <br><br>
+                        -Appended Rolling Starts section with formation rules (6.1)
+                        <br><br>
+                        -Explained weather forecasts (3.6)
+                    </p>
+                    
         </main>
     </div>
 
@@ -790,7 +807,7 @@ mean you are unable to take part in the races.
     }
 
     // Example usage: Enable the notification with a message
-    showNotification('Welcome to the all new TSRBC Handbook. Please read through it, there are a lot of changes! In future, new additions/removals from the rules will be announced in this red box, alongside the changelog appendix at the bottom.');
+    showNotification('Handbook updated 03/09/24. Please read the Changelog for more information.');
 
     // Example usage: Disable the notification by passing an empty string
     // showNotification('');
